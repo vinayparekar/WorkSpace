@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
+// WRONG solution
+
 public class SpreadVirusToAllServers {
 
     public static void main(String[] args){
