@@ -14,7 +14,9 @@ public class SparseMatrix {
         for(int i =0 ; i< matrix.size()  ;i++){
             Map<Integer,Integer> rowmap = new LinkedHashMap<>();
             for(int j=0 ;j< matrix.get(0).size() ; j++){
-                 rowmap.put(j, matrix.get(i).get(j));
+                if(matrix.get(i).get(j) !=0 ){
+                    rowmap.put(j, matrix.get(i).get(j));
+                }
             }
             spaMatrix.add(rowmap);
         }
@@ -28,9 +30,7 @@ public class SparseMatrix {
         spaMatrix = new LinkedList<>();
         for(int i =0 ; i< rows  ;i++){
             Map<Integer,Integer> rowmap = new LinkedHashMap<>();
-            for(int j=0 ;j< columns ; j++){
-                rowmap.put(j, matrix.get(i).get(j));
-            }
+            rowmap.putAll(matrix.get(i));
             spaMatrix.add(rowmap);
         }
 
@@ -42,7 +42,7 @@ public class SparseMatrix {
 
         for(Map map : spaMatrix){
             for(Object key : map.keySet()){
-                System.out.print(map.get((Integer) key) + " ");
+                System.out.print("[" +key + " -> " +map.get((Integer) key) + "] ");
             }
             System.out. println();
         }
@@ -52,9 +52,6 @@ public class SparseMatrix {
 
         for(int i =0 ; i< rows  ;i++){
             Map<Integer,Integer> rowmap = new LinkedHashMap<>();
-            for(int j=0 ;j< columns ; j++){
-                rowmap.put(j, 0);
-            }
             zroSprMatrix.add(rowmap);
         }
     }
