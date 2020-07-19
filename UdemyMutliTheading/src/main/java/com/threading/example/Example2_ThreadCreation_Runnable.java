@@ -1,6 +1,6 @@
 package com.threading.example;
 
-public class Example2 {
+public class Example2_ThreadCreation_Runnable {
     public static void main(String[] args) {
         Thread t1 = new Thread(new Runner1());
         Thread t2 = new Thread( new Runner1());

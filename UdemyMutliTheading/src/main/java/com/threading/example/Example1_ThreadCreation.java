@@ -1,6 +1,6 @@
 package com.threading.example;
 
-public class Example1 {
+public class Example1_ThreadCreation {
     public static void main(String[] args) {
 
         Runner r1 = new Runner();
