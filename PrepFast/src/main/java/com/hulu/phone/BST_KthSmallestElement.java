@@ -33,6 +33,9 @@ Enjoy your interview!
 * k = 7 --> 23
  */
 
+
+// TRY WITH RECURSION
+
 public class BST_KthSmallestElement {
     static Integer k ;
 
@@ -52,13 +55,22 @@ public class BST_KthSmallestElement {
         node2.left = node10;
         node2.right= node5;
 
+        // static variable Approach
         k = 2;
-        int value  = getKthSmallestValue(root);
-        System.out.println(value);
+        int value  = getKthSmallestValue(root);System.out.println(value);
 
         k = 3;  value  = getKthSmallestValue(root);     System.out.println(value);
         k = 5;  value  = getKthSmallestValue(root);     System.out.println(value);
-        k = 10;  value  = getKthSmallestValue(root);     System.out.println(value);
+//      k = 10;  value  = getKthSmallestValue(root);     System.out.println(value+ "\n");  // Throws Exception as there are just 7 values in BST
+
+        // Recursive return value Approach
+        Pair value1= null;
+        k = 2;    value1  = getKthSmallestValue_recursive(root,k);    System.out.println("result : "+value1.r_value);
+        k = 3;  value1  = getKthSmallestValue_recursive(root,k);     System.out.println(value1.r_value);
+        k = 5;  value1  = getKthSmallestValue_recursive(root,k);     System.out.println(value1.r_value);
+        k = 6;  value1  = getKthSmallestValue_recursive(root,k);     System.out.println(value1.r_value);
+        k = 10;  value1  = getKthSmallestValue_recursive(root,k);     System.out.println(value1.r_value);
+
     }
 
     public static Integer getKthSmallestValue(TreeNode root  ) {
@@ -90,6 +102,28 @@ public class BST_KthSmallestElement {
         }
 
     }
+
+    public static Pair getKthSmallestValue_recursive(TreeNode root, int k){
+
+        if(root==null){
+            return new Pair(k,-1);
+        }
+        Pair left_value = getKthSmallestValue_recursive(root.left,k);
+        if(left_value.k_value ==0){
+            return left_value;
+        }
+        k=left_value.k_value;
+        System.out.println(root.value + " => "+ k );
+        if(--k==0){
+            return new Pair(0,root.value);
+        }
+        Pair right_value = getKthSmallestValue_recursive(root.right,k);
+        if(right_value.k_value == 0){
+            return right_value;
+        }
+        k= right_value.k_value;
+        return new Pair(k,-1);
+    }
 }
 
 class TreeNode{
@@ -100,4 +134,10 @@ class TreeNode{
     TreeNode(int value){
         this.value = value;
     }
+}
+
+class Pair{
+    int k_value;
+    int r_value;
+    Pair(int k, int r){this.k_value = k; this.r_value = r;}
 }
